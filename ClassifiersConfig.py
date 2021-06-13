@@ -118,7 +118,8 @@ classifiers_default_c = {
     'GradientBoostingClassifier': GradientBoostingClassifier(),
     'NaiveGaussian': GaussianNB(),
     'RandomForestClassifier': RandomForestClassifier(n_jobs=-1),
-    'KNeighborsClassifier': KNeighborsClassifier(n_jobs=-1)
+    'KNeighborsClassifier': KNeighborsClassifier(n_jobs=-1),
+    'ExtraTreesClassifier': ExtraTreesClassifier(n_jobs=-1)
 }
 
 classifiers_default_p = {
@@ -184,11 +185,11 @@ qda_params_to_tune = {
     'reg_param': [0.0, 0.1, 0.2, 0.5]
 }
 
-svc_params_c = {
-    'probability': False,
+svc_params_to_tune = {
+    'probability': [False],
     'kernel': ["linear", "rbf", "poly", "sigmoid"],
     'C': [random.uniform(0.1, 100) for x in range(0, 10, 1)],
     'degree': [random.uniform(1, 5) for x in range(0, 10, 1)],
     'coef0': [random.uniform(1, 5) for x in range(0, 10, 1)],
-    'gamma': 'auto',
+    'gamma': ['auto'],
 }

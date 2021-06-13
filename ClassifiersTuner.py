@@ -5,6 +5,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import confusion_matrix, plot_confusion_matrix
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import ExtraTreesClassifier
 import matplotlib.pyplot as plt
 from sklearn import svm, datasets
 from DataSplitter import Splitter
@@ -55,6 +56,14 @@ class ClassifiersTuner:
         self.__picked_classifier = None
         self.__stats = None
         self.__conf_mat = None
+        
+    def plot_full_featured_conf_matrix(self, key):
+        clf = self.__classifiers[key].classifier
+#         clf.fit(self.__train_x, self.__train_y)
+        pred_y = clf.predict(self.__test_x)
+        print('self.__test_y: ', self.__test_y)
+        print('pred_y: ', pred_y)
+        plot_confusion_matrix(clf, self.__test_x, pred_y, normalize='true')
     
     def fit_choosen(self):
 #         print('[INFO] Classifier: '+ key)
